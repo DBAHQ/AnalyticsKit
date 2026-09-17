@@ -18,10 +18,18 @@ public final class FirebaseAnalyticsProvider: AnalyticsProvider {
     public func start() {
         let plist = AnalyticsKit.configuration.firebasePlistName
         guard let path = Bundle.main.path(forResource: plist, ofType: "plist"),
-              let options = FirebaseOptions(contentsOfFile: path) else { return }
+              let options = FirebaseOptions(contentsOfFile: path) else {
+            AnalyticsKitLog.log("Firebase НЕ поднят: не найден \(plist).plist")
+            return
+        }
+        if AnalyticsKit.configuration.isLoggingEnabled {
+            // Подробный лог самого SDK: видно, какие события он принял и отправил.
+            FirebaseConfiguration.shared.setLoggerLevel(.debug)
+        }
         FirebaseApp.configure(options: options)
         Analytics.setAnalyticsCollectionEnabled(true)
         setUserProperties()
+        AnalyticsKitLog.log("Firebase поднят, проект \(options.gcmSenderID), plist \(plist)")
     }
 
     private func setUserProperties() {

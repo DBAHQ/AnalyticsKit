@@ -15,11 +15,17 @@ public final class AppMetricaAnalyticsProvider: AnalyticsProvider {
     // MARK: - Lifecycle
 
     public func start() {
-        guard let configuration = AppMetricaConfiguration(apiKey: AnalyticsKit.configuration.appMetricaKey) else {
+        let key = AnalyticsKit.configuration.appMetricaKey
+        guard let configuration = AppMetricaConfiguration(apiKey: key) else {
+            AnalyticsKitLog.log("AppMetrica НЕ поднята: невалидный ключ '\(key)'")
             return
         }
         configuration.userProfileID = userID
+        if AnalyticsKit.configuration.isLoggingEnabled {
+            configuration.areLogsEnabled = true
+        }
         AppMetrica.activate(with: configuration)
+        AnalyticsKitLog.log("AppMetrica поднята, ключ \(key)")
     }
 
     public func onboardingBegin() {

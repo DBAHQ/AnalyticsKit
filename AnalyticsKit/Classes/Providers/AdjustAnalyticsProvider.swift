@@ -25,7 +25,11 @@ public final class AdjustAnalyticsProvider: PartialAnalyticsProvider {
         // Delayed mode (Adjust v5): SDK инициализируется в память и НЕ отправляет первую
         // сессию, пока не будет вызван endFirstSessionDelay() — после ответа по ATT.
         adjustConfig?.enableFirstSessionDelay()
+        if AnalyticsKit.configuration.isLoggingEnabled {
+            adjustConfig?.logLevel = ADJLogLevelVerbose
+        }
         Adjust.initSdk(adjustConfig)
+        AnalyticsKitLog.log("Adjust поднят, среда \(environment), токенов событий: \(config.adjustEventTokens.count)")
     }
 
     /// Adjust v5: отпускает придержанную первую сессию. Зовётся после ответа
@@ -42,7 +46,15 @@ public final class AdjustAnalyticsProvider: PartialAnalyticsProvider {
 
     /// Отправляет событие, если приложение дало для него токен.
     private func send(_ event: AdjustEvent, _ parameters: [String: String] = [:]) {
-        guard let token = token(event), let adjEvent = ADJEvent(eventToken: token) else { return }
+        guard let token = token(event) else {
+            AnalyticsKitLog.log("Adjust пропускает '\(event.rawValue)' — токена нет в карте")
+            return
+        }
+        guard let adjEvent = ADJEvent(eventToken: token) else {
+            AnalyticsKitLog.log("Adjust НЕ создал событие '\(event.rawValue)' по токену \(token)")
+            return
+        }
+        AnalyticsKitLog.log("Adjust шлёт '\(event.rawValue)' токеном \(token)")
         for (key, value) in parameters {
             adjEvent.addPartnerParameter(key, value: value)
         }
