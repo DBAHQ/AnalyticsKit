@@ -26,7 +26,7 @@ public final class AdjustAnalyticsProvider: PartialAnalyticsProvider {
         // сессию, пока не будет вызван endFirstSessionDelay() — после ответа по ATT.
         adjustConfig?.enableFirstSessionDelay()
         if AnalyticsKit.configuration.isLoggingEnabled {
-            adjustConfig?.logLevel = ADJLogLevelVerbose
+            adjustConfig?.logLevel = .verbose
         }
         Adjust.initSdk(adjustConfig)
         AnalyticsKitLog.log("Adjust поднят, среда \(environment), токенов событий: \(config.adjustEventTokens.count)")
