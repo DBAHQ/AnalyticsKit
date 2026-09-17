@@ -146,7 +146,8 @@ extension AdjustAnalyticsProvider: AdjustDelegate {
         let token = eventFailureResponse?.eventToken ?? "?"
         let message = eventFailureResponse?.message ?? "без сообщения"
         let retry = eventFailureResponse?.willRetry == true ? ", будет повтор" : ""
-        AnalyticsKitLog.log("Adjust ОТКЛОНИЛ событие, токен \(token): \(message)\(retry)")
+        let json = eventFailureResponse?.jsonResponse.map { "\($0)" } ?? "нет тела ответа"
+        AnalyticsKitLog.log("Adjust ОТКЛОНИЛ событие, токен \(token): \(message)\(retry) | ответ: \(json)")
     }
 
     public func adjustSessionTrackingSucceeded(_ sessionSuccessResponse: ADJSessionSuccess?) {
@@ -154,6 +155,8 @@ extension AdjustAnalyticsProvider: AdjustDelegate {
     }
 
     public func adjustSessionTrackingFailed(_ sessionFailureResponse: ADJSessionFailure?) {
-        AnalyticsKitLog.log("Adjust отклонил сессию: \(sessionFailureResponse?.message ?? "без сообщения")")
+        let message = sessionFailureResponse?.message ?? "без сообщения"
+        let json = sessionFailureResponse?.jsonResponse.map { "\($0)" } ?? "нет тела ответа"
+        AnalyticsKitLog.log("Adjust отклонил сессию: \(message) | ответ: \(json)")
     }
 }
