@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AnalyticsKit'
-  s.version          = '0.2.1'
+  s.version          = '0.3.0'
   s.summary          = 'Общий слой аналитики приложений DBAHQ.'
   s.description      = <<-DESC
                        Единый приёмник продуктовых событий: фанаут в Firebase, AppMetrica

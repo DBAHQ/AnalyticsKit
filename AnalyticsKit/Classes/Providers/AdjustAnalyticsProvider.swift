@@ -10,11 +10,13 @@
 import Foundation
 import AdjustSdk
 
-public final class AdjustAnalyticsProvider: PartialAnalyticsProvider {
+public final class AdjustAnalyticsProvider: NSObject, PartialAnalyticsProvider {
 
     public var userID: String { AnalyticsKit.configuration.userID() }
 
-    public init() {}
+    public override init() {
+        super.init()
+    }
 
     // MARK: - Lifecycle
 
@@ -28,6 +30,10 @@ public final class AdjustAnalyticsProvider: PartialAnalyticsProvider {
         if AnalyticsKit.configuration.isLoggingEnabled {
             adjustConfig?.logLevel = .verbose
         }
+        // Делегат — единственный способ узнать вердикт сервера Adjust на
+        // Production-сборке: собственные логи SDK там отключены наглухо
+        // (в ADJLogger каждый метод начинается с `if isProductionEnvironment return`).
+        adjustConfig?.delegate = self
         Adjust.initSdk(adjustConfig)
         AnalyticsKitLog.log("Adjust поднят, среда \(environment), токенов событий: \(config.adjustEventTokens.count)")
     }
@@ -124,5 +130,30 @@ public final class AdjustAnalyticsProvider: PartialAnalyticsProvider {
         case "ironsource":            return "ironsource_sdk"
         default:                      return "publisher_sdk"
         }
+    }
+}
+
+// MARK: - Вердикт сервера Adjust
+
+extension AdjustAnalyticsProvider: AdjustDelegate {
+
+    public func adjustEventTrackingSucceeded(_ eventSuccessResponse: ADJEventSuccess?) {
+        let token = eventSuccessResponse?.eventToken ?? "?"
+        AnalyticsKitLog.log("Adjust ПРИНЯЛ событие, токен \(token), adid \(eventSuccessResponse?.adid ?? "—")")
+    }
+
+    public func adjustEventTrackingFailed(_ eventFailureResponse: ADJEventFailure?) {
+        let token = eventFailureResponse?.eventToken ?? "?"
+        let message = eventFailureResponse?.message ?? "без сообщения"
+        let retry = eventFailureResponse?.willRetry == true ? ", будет повтор" : ""
+        AnalyticsKitLog.log("Adjust ОТКЛОНИЛ событие, токен \(token): \(message)\(retry)")
+    }
+
+    public func adjustSessionTrackingSucceeded(_ sessionSuccessResponse: ADJSessionSuccess?) {
+        AnalyticsKitLog.log("Adjust принял сессию, adid \(sessionSuccessResponse?.adid ?? "—")")
+    }
+
+    public func adjustSessionTrackingFailed(_ sessionFailureResponse: ADJSessionFailure?) {
+        AnalyticsKitLog.log("Adjust отклонил сессию: \(sessionFailureResponse?.message ?? "без сообщения")")
     }
 }
