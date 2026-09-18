@@ -100,6 +100,13 @@ public final class AdjustAnalyticsProvider: NSObject, PartialAnalyticsProvider {
                                 "stake": stake.description])
     }
 
+    public func trackNewOrderDidSend(isTournament: Bool, symbol: String, amount: Decimal,
+                                     takeProfit: Decimal, stopLoss: Decimal) {
+        send(.newOrderDidSend, ["isTournament": String(isTournament),
+                                "symbol": symbol,
+                                "amount": amount.description])
+    }
+
     public func trackShopItemDidPurchase(id: String, price: Decimal) {
         send(.shopItemDidPurchase, ["id": id, "price": price.description])
     }

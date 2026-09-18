@@ -17,7 +17,14 @@ public enum AdjustEvent: String, CaseIterable {
     case authSignUpBegin
     case authSignUpComplete
     case authOAuthComplete
+    /// Ставка на раунд — форма торговли TradingClub.
     case tradingDidTrade
+
+    /// Отправлен ордер — форма торговли CFD-приложений (TradingGuru и др.).
+    /// Отдельный кейс, а не общий с `tradingDidTrade`: у приложений разные
+    /// методы, и общий кейс задвоил бы событие там, где живы обе формы.
+    case newOrderDidSend
+
     case shopItemDidPurchase
 
     /// Отдельное событие дохода. Рядом с ним всегда уходит нативный
