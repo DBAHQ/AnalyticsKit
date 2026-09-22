@@ -46,6 +46,12 @@ public final class AppLovinEventTracker {
     /// не набирается никогда — это защита от утечки, если инициализация упала.
     private static let pendingEventsLimit = 32
 
+    /// Сколько всего ждём, пока приложение узнает значение флага (у приложений это
+    /// активация Remote Config — пара секунд, запас взят на медленную сеть).
+    private static let configurationWaitLimit: TimeInterval = 15
+    /// Шаг перепроверки внутри этого ожидания.
+    private static let configurationRetryStep: TimeInterval = 0.5
+
     // MARK: - Properties
 
     private let queue = DispatchQueue(label: "com.dbahq.analyticskit.applovin.event-tracker")
@@ -132,15 +138,35 @@ public final class AppLovinEventTracker {
         }
     }
 
-    private func send(name: String, parameters: [String: String]?) {
-        DispatchQueue.main.async {
-            // Гейт стоит именно здесь — это единственная точка, через которую
-            // уходят и мгновенные события, и накопленные до подъёма SDK.
-            guard AnalyticsKit.configuration.isAppLovinEventTrackingEnabled() else {
+    /// Гейт стоит именно здесь — это единственная точка, через которую уходят
+    /// и мгновенные события, и накопленные до подъёма SDK.
+    ///
+    /// Отдельный случай — флаг ещё не известен (`nil`). Рекламный SDK поднимается
+    /// раньше, чем активируется Remote Config, и очередь сливалась в это окно: при
+    /// выключенном флаге всё равно уходили первые события каждой установки
+    /// (`app_open`, `rewarded_ad_opportunity`). Теперь ждём и перепроверяем.
+    private func send(name: String, parameters: [String: String]?, waitedFor: TimeInterval = 0) {
+        DispatchQueue.main.async { [weak self] in
+            switch AnalyticsKit.configuration.isAppLovinEventTrackingEnabled() {
+            case .some(false):
                 AnalyticsKitLog.log("событие AppLovin '\(name)' не отправлено — трекинг выключен")
-                return
+
+            case .some(true):
+                ALSdk.shared().eventService.trackEvent(name, parameters: parameters ?? [:])
+
+            case .none where waitedFor < Self.configurationWaitLimit:
+                DispatchQueue.main.asyncAfter(deadline: .now() + Self.configurationRetryStep) {
+                    self?.send(name: name,
+                               parameters: parameters,
+                               waitedFor: waitedFor + Self.configurationRetryStep)
+                }
+
+            case .none:
+                // Значение так и не приехало: нет сети или ключа нет вовсе. Ведём себя
+                // как раньше — молча терять аналитику хуже, чем отправить.
+                AnalyticsKitLog.log("событие AppLovin '\(name)': значение флага не приехало за \(Int(Self.configurationWaitLimit)) с, отправляю")
+                ALSdk.shared().eventService.trackEvent(name, parameters: parameters ?? [:])
             }
-            ALSdk.shared().eventService.trackEvent(name, parameters: parameters ?? [:])
         }
     }
 

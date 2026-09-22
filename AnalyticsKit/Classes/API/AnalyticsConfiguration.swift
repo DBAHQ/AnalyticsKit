@@ -35,7 +35,11 @@ public struct AnalyticsConfiguration {
     public let isFirstLaunch: () -> Bool
 
     /// Гейт пользовательских событий AppLovin (у приложений — флаг Remote Config).
-    public let isAppLovinEventTrackingEnabled: () -> Bool
+    ///
+    /// `nil` означает «значение ещё не известно»: Remote Config на старте приезжает
+    /// не мгновенно. Трекер в этом случае придерживает события, а не шлёт их —
+    /// иначе выключенный флаг всё равно пропускал бы первые события каждой установки.
+    public let isAppLovinEventTrackingEnabled: () -> Bool?
 
     /// Логи пакета в `os_log`. Как в AdKit — флагом, а не Remote Config.
     public let isLoggingEnabled: Bool
@@ -52,7 +56,7 @@ public struct AnalyticsConfiguration {
                 userID: @escaping () -> String,
                 language: @escaping () -> String?,
                 isFirstLaunch: @escaping () -> Bool,
-                isAppLovinEventTrackingEnabled: @escaping () -> Bool,
+                isAppLovinEventTrackingEnabled: @escaping () -> Bool?,
                 isLoggingEnabled: Bool = false,
                 adRevenue: AdRevenueConfiguration? = nil) {
         self.isProduction = isProduction
