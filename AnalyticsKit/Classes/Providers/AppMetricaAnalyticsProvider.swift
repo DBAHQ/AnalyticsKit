@@ -26,6 +26,23 @@ public final class AppMetricaAnalyticsProvider: AnalyticsProvider {
         }
         AppMetrica.activate(with: configuration)
         AnalyticsKitLog.log("AppMetrica поднята, ключ \(key)")
+        logIdentifiers()
+    }
+
+    /// Идентификаторы, по которым сессию находят в кабинете AppMetrica.
+    ///
+    /// `deviceID` приходит не сразу — до ответа стартапа он `nil`, поэтому ждём
+    /// `requestStartupIdentifiers`. `profileID` — это `userID` приложения, у анонимного
+    /// пользователя он пустой, и это не ошибка: искать такую сессию нужно по deviceID.
+    private func logIdentifiers() {
+        let profileID = userID
+        AppMetrica.requestStartupIdentifiers(on: .main) { _, error in
+            if let error {
+                AnalyticsKitLog.always("AppMetrica: идентификаторы не приехали — \(error.localizedDescription)")
+                return
+            }
+            AnalyticsKitLog.always("AppMetrica: deviceID \(AppMetrica.deviceID ?? "—"), uuid \(AppMetrica.uuid), profileID '\(profileID)'")
+        }
     }
 
     public func onboardingBegin() {
