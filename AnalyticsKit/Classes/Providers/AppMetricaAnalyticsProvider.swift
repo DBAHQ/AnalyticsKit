@@ -31,6 +31,10 @@ public final class AppMetricaAnalyticsProvider: AnalyticsProvider {
 
     /// Идентификаторы, по которым сессию находят в кабинете AppMetrica.
     ///
+    /// Пишется только при включённом `isLoggingEnabled`: среди полей есть profileID,
+    /// а это userID приложения — у залогиненного пользователя там e-mail. В релизной
+    /// сборке такая строка была бы утечкой персональных данных в системный лог.
+    ///
     /// `deviceID` приходит не сразу — до ответа стартапа он `nil`, поэтому ждём
     /// `requestStartupIdentifiers`. `profileID` — это `userID` приложения, у анонимного
     /// пользователя он пустой, и это не ошибка: искать такую сессию нужно по deviceID.
@@ -38,10 +42,10 @@ public final class AppMetricaAnalyticsProvider: AnalyticsProvider {
         let profileID = userID
         AppMetrica.requestStartupIdentifiers(on: .main) { _, error in
             if let error {
-                AnalyticsKitLog.always("AppMetrica: идентификаторы не приехали — \(error.localizedDescription)")
+                AnalyticsKitLog.log("AppMetrica: идентификаторы не приехали — \(error.localizedDescription)")
                 return
             }
-            AnalyticsKitLog.always("AppMetrica: deviceID \(AppMetrica.deviceID ?? "—"), uuid \(AppMetrica.uuid), profileID '\(profileID)'")
+            AnalyticsKitLog.log("AppMetrica: deviceID \(AppMetrica.deviceID ?? "—"), uuid \(AppMetrica.uuid), profileID '\(profileID)'")
         }
     }
 

@@ -22,13 +22,6 @@ enum AnalyticsKitLog {
         logger.notice("[AnalyticsKit] \(message, privacy: .public)")
     }
 
-    /// Пишется независимо от общего переключателя: этим каналом уходят идентификаторы,
-    /// по которым сессию ищут в кабинете. Нужны они как раз на сборках, где остальные
-    /// логи выключены, и стоят одну строку за запуск.
-    static func always(_ message: String) {
-        logger.notice("[AnalyticsKit] \(message, privacy: .public)")
-    }
-
     /// Событие ушло в фанаут. Параметры печатаем отсортированными, чтобы
     /// строку можно было механически сверять между запусками.
     static func event(_ name: String, _ parameters: [String: Any] = [:]) {
