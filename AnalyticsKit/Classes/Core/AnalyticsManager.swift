@@ -18,9 +18,11 @@ public final class AnalyticsManager: AnalyticsProvider {
     // MARK: - Properties
 
     /// Порядок сохранён с доперенесённой версии: Adjust, Firebase, AppMetrica.
+    /// Свой трекер — последним; без `eventTracker` в конфигурации он молчит.
     private var providers: [AnalyticsProvider] = [AdjustAnalyticsProvider(),
                                                   FirebaseAnalyticsProvider(),
-                                                  AppMetricaAnalyticsProvider()]
+                                                  AppMetricaAnalyticsProvider(),
+                                                  EventTrackerProvider()]
 
     public var userID: String { AnalyticsKit.configuration.userID() }
 

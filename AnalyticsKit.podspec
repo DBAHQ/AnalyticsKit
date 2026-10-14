@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name             = 'AnalyticsKit'
-  s.version          = '0.4.3'
+  s.version          = '0.5.0'
   s.summary          = 'Общий слой аналитики приложений DBAHQ.'
   s.description      = <<-DESC
                        Единый приёмник продуктовых событий: фанаут в Firebase, AppMetrica
                        и Adjust, жизненный цикл сессии, отметка install, события AppLovin
-                       и батч-репортер дохода с рекламы на свой бекенд.
+                       батч-репортер дохода с рекламы и свой трекер событий (EventTracker) на бекенд аналитики.
                        Всё прикладное — ключи, userID, язык, пуш-токен, карта токенов
                        Adjust — приложение передаёт через AnalyticsConfiguration.
                        DESC

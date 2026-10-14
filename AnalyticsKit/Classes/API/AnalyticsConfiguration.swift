@@ -48,6 +48,11 @@ public struct AnalyticsConfiguration {
 
     public let adRevenue: AdRevenueConfiguration?
 
+    // MARK: - Свой трекер событий
+
+    /// `nil` — приложение трекер не подключало, события туда не идут.
+    public let eventTracker: EventTrackerConfiguration?
+
     public init(isProduction: Bool,
                 firebasePlistName: String,
                 appMetricaKey: String,
@@ -58,7 +63,8 @@ public struct AnalyticsConfiguration {
                 isFirstLaunch: @escaping () -> Bool,
                 isAppLovinEventTrackingEnabled: @escaping () -> Bool?,
                 isLoggingEnabled: Bool = false,
-                adRevenue: AdRevenueConfiguration? = nil) {
+                adRevenue: AdRevenueConfiguration? = nil,
+                eventTracker: EventTrackerConfiguration? = nil) {
         self.isProduction = isProduction
         self.firebasePlistName = firebasePlistName
         self.appMetricaKey = appMetricaKey
@@ -70,6 +76,33 @@ public struct AnalyticsConfiguration {
         self.isAppLovinEventTrackingEnabled = isAppLovinEventTrackingEnabled
         self.isLoggingEnabled = isLoggingEnabled
         self.adRevenue = adRevenue
+        self.eventTracker = eventTracker
+    }
+}
+
+public struct EventTrackerConfiguration {
+
+    /// Слаг приложения — заголовок `application`.
+    public let appSlug: String
+    public let apiKey: String
+
+    /// Базовый URL со слешем на конце (тот же сервис, что и у дохода с рекламы).
+    public let host: String
+
+    /// Идентификатор пользователя на бекенде (не email); пустая строка до логина.
+    public let userID: () -> String
+
+    /// Kill-switch (у приложений — флаг Remote Config). `nil` — значение ещё
+    /// не известно: события придерживаются в очереди, а не теряются и не уходят.
+    public let isEnabled: () -> Bool?
+
+    public init(appSlug: String, apiKey: String, host: String,
+                userID: @escaping () -> String, isEnabled: @escaping () -> Bool?) {
+        self.appSlug = appSlug
+        self.apiKey = apiKey
+        self.host = host
+        self.userID = userID
+        self.isEnabled = isEnabled
     }
 }
 
