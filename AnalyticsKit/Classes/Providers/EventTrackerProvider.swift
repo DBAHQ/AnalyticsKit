@@ -98,6 +98,7 @@ public final class EventTrackerProvider: AnalyticsProvider {
     private var recentEvents: [(name: String, timestamp: Int, placement: String?, type: String?)] = []
     private var isNetworkAvailable = true
     private var isStarted = false
+    private var lastLoggedFlag: Bool??
 
     private var eventTimer: Timer?
     private var revenueTimer: Timer?
@@ -288,7 +289,12 @@ public final class EventTrackerProvider: AnalyticsProvider {
     private func flushLocked(_ stream: Stream) {
         guard let settings, !sending.contains(stream), !(queues[stream] ?? []).isEmpty else { return }
 
-        switch settings.isEnabled() {
+        let isEnabled = settings.isEnabled()
+        if isEnabled != lastLoggedFlag {
+            lastLoggedFlag = isEnabled
+            AnalyticsKitLog.log("EventTracker флаг: \(isEnabled.map { $0 ? "включён" : "выключен" } ?? "ждём Remote Config")")
+        }
+        switch isEnabled {
         case nil:
             return  // Remote Config ещё не приехал — придерживаем
         case false?:
@@ -345,7 +351,15 @@ public final class EventTrackerProvider: AnalyticsProvider {
         request.setValue("ios", forHTTPHeaderField: "platform")
         request.httpBody = body
 
-        AnalyticsKitLog.log("EventTracker → POST \(stream.path) [\(batch.count)] \(String(data: body, encoding: .utf8) ?? "")")
+        let names = batch.map { ($0["event"] ?? $0["source"]).map { "\($0)" } ?? "?" }
+        AnalyticsKitLog.log("EventTracker → POST \(stream.path) [\(batch.count)] \(names.joined(separator: ", "))")
+        // os_log режет длинные строки — тело печатаем кусками.
+        let text = String(data: body, encoding: .utf8) ?? ""
+        stride(from: 0, to: text.count, by: 800).forEach { offset in
+            let start = text.index(text.startIndex, offsetBy: offset)
+            let end = text.index(start, offsetBy: 800, limitedBy: text.endIndex) ?? text.endIndex
+            AnalyticsKitLog.log("EventTracker   body[\(offset / 800)] \(text[start..<end])")
+        }
 
         session.dataTask(with: request) { [weak self] data, response, error in
             guard let self else { return }
