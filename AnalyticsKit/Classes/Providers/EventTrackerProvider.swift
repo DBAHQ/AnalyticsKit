@@ -1298,6 +1298,88 @@ public final class EventTrackerProvider: AnalyticsProvider {
         trackEvent(name: "minersListDidPresent")
     }
 
+    // MARK: - Бизнес
+
+    public func trackBusinessListDidPresent() {
+        trackEvent(name: "businessListDidPresent")
+    }
+
+    public func trackBusinessListDidDismiss(timespent: Double) {
+        trackEvent(name: "businessListDidDismiss", properties: ["timespentSec": timespent])
+    }
+
+    public func trackBusinessListBannerDidPresent(type: String) {
+        trackEvent(name: "businessListBannerDidPresent", properties: ["type": type])
+    }
+
+    public func trackBusinessListBannerDidTap(type: String) {
+        trackEvent(name: "businessListBannerDidTap", properties: ["type": type])
+    }
+
+    public func trackBusinessCompanyDidPresent() {
+        trackEvent(name: "businessCompanyDidPresent")
+    }
+
+    public func trackBusinessCompanyDidDismiss(timespent: Double) {
+        trackEvent(name: "businessCompanyDidDismiss", properties: ["timespentSec": timespent])
+    }
+
+    public func trackBusinessCompanyDidCreate() {
+        trackEvent(name: "businessCompanyDidCreate")
+    }
+
+    public func trackBusinessCompanyDidCreateForAd() {
+        trackEvent(name: "businessCompanyDidCreateForAd")
+    }
+
+    public func trackBusinessDidCollect() {
+        trackEvent(name: "businessDidCollect")
+    }
+
+    public func trackBusinessCollectMultiplyDidPresent() {
+        trackEvent(name: "businessCollectMultiplyDidPresent")
+    }
+
+    public func trackBusinessCollectMultiplyDidDismiss(timespent: Double) {
+        trackEvent(name: "businessCollectMultiplyDidDismiss", properties: ["timespentSec": timespent])
+    }
+
+    public func trackBusinessCollectMultiplyDidTapCollect() {
+        trackEvent(name: "businessCollectMultiplyDidTapCollect")
+    }
+
+    public func trackBusinessCollectMultiplyDidTapMultiply() {
+        trackEvent(name: "businessCollectMultiplyDidTapMultiply")
+    }
+
+    public func trackBusinessDidStartUpgrade() {
+        trackEvent(name: "businessDidStartUpgrade")
+    }
+
+    public func trackBusinessDidUpgrade() {
+        trackEvent(name: "businessDidUpgrade")
+    }
+
+    public func trackBusinessDidFailUpgrade() {
+        trackEvent(name: "businessDidFailUpgrade")
+    }
+
+    public func trackBusinessDidRescue() {
+        trackEvent(name: "businessDidRescue")
+    }
+
+    public func trackBusinessCrisisDidPresent() {
+        trackEvent(name: "businessCrisisDidPresent")
+    }
+
+    public func trackBusinessCrisisDidDismiss(timespent: Double) {
+        trackEvent(name: "businessCrisisDidDismiss", properties: ["timespentSec": timespent])
+    }
+
+    public func trackBusinessCrisisDidClose() {
+        trackEvent(name: "businessCrisisDidClose")
+    }
+
     // MARK: - Startup
 
     public func trackStartupDidChangeAmount(amount: Double, previousAmount: Double) {

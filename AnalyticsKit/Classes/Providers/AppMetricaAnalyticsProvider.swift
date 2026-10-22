@@ -809,6 +809,88 @@ public final class AppMetricaAnalyticsProvider: AnalyticsProvider {
         AppMetrica.reportEvent(name: "minersListDidPresent", parameters: nil)
     }
 
+    // MARK: - Бизнес
+
+    public func trackBusinessListDidPresent() {
+        AppMetrica.reportEvent(name: "businessListDidPresent", parameters: nil)
+    }
+
+    public func trackBusinessListDidDismiss(timespent: Double) {
+        AppMetrica.reportEvent(name: "businessListDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackBusinessListBannerDidPresent(type: String) {
+        AppMetrica.reportEvent(name: "businessListBannerDidPresent", parameters: ["type": type])
+    }
+
+    public func trackBusinessListBannerDidTap(type: String) {
+        AppMetrica.reportEvent(name: "businessListBannerDidTap", parameters: ["type": type])
+    }
+
+    public func trackBusinessCompanyDidPresent() {
+        AppMetrica.reportEvent(name: "businessCompanyDidPresent", parameters: nil)
+    }
+
+    public func trackBusinessCompanyDidDismiss(timespent: Double) {
+        AppMetrica.reportEvent(name: "businessCompanyDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackBusinessCompanyDidCreate() {
+        AppMetrica.reportEvent(name: "businessCompanyDidCreate", parameters: nil)
+    }
+
+    public func trackBusinessCompanyDidCreateForAd() {
+        AppMetrica.reportEvent(name: "businessCompanyDidCreateForAd", parameters: nil)
+    }
+
+    public func trackBusinessDidCollect() {
+        AppMetrica.reportEvent(name: "businessDidCollect", parameters: nil)
+    }
+
+    public func trackBusinessCollectMultiplyDidPresent() {
+        AppMetrica.reportEvent(name: "businessCollectMultiplyDidPresent", parameters: nil)
+    }
+
+    public func trackBusinessCollectMultiplyDidDismiss(timespent: Double) {
+        AppMetrica.reportEvent(name: "businessCollectMultiplyDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackBusinessCollectMultiplyDidTapCollect() {
+        AppMetrica.reportEvent(name: "businessCollectMultiplyDidTapCollect", parameters: nil)
+    }
+
+    public func trackBusinessCollectMultiplyDidTapMultiply() {
+        AppMetrica.reportEvent(name: "businessCollectMultiplyDidTapMultiply", parameters: nil)
+    }
+
+    public func trackBusinessDidStartUpgrade() {
+        AppMetrica.reportEvent(name: "businessDidStartUpgrade", parameters: nil)
+    }
+
+    public func trackBusinessDidUpgrade() {
+        AppMetrica.reportEvent(name: "businessDidUpgrade", parameters: nil)
+    }
+
+    public func trackBusinessDidFailUpgrade() {
+        AppMetrica.reportEvent(name: "businessDidFailUpgrade", parameters: nil)
+    }
+
+    public func trackBusinessDidRescue() {
+        AppMetrica.reportEvent(name: "businessDidRescue", parameters: nil)
+    }
+
+    public func trackBusinessCrisisDidPresent() {
+        AppMetrica.reportEvent(name: "businessCrisisDidPresent", parameters: nil)
+    }
+
+    public func trackBusinessCrisisDidDismiss(timespent: Double) {
+        AppMetrica.reportEvent(name: "businessCrisisDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackBusinessCrisisDidClose() {
+        AppMetrica.reportEvent(name: "businessCrisisDidClose", parameters: nil)
+    }
+
     public func trackOtherUserDidLike() {
         AppMetrica.reportEvent(name: "otherUserDidLike", parameters: nil)
     }

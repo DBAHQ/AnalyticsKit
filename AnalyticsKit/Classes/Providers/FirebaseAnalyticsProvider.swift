@@ -757,6 +757,88 @@ public final class FirebaseAnalyticsProvider: AnalyticsProvider {
         Analytics.logEvent("minersListDidPresent", parameters: nil)
     }
 
+    // MARK: - Бизнес
+
+    public func trackBusinessListDidPresent() {
+        Analytics.logEvent("businessListDidPresent", parameters: nil)
+    }
+
+    public func trackBusinessListDidDismiss(timespent: Double) {
+        Analytics.logEvent("businessListDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackBusinessListBannerDidPresent(type: String) {
+        Analytics.logEvent("businessListBannerDidPresent", parameters: ["type": type])
+    }
+
+    public func trackBusinessListBannerDidTap(type: String) {
+        Analytics.logEvent("businessListBannerDidTap", parameters: ["type": type])
+    }
+
+    public func trackBusinessCompanyDidPresent() {
+        Analytics.logEvent("businessCompanyDidPresent", parameters: nil)
+    }
+
+    public func trackBusinessCompanyDidDismiss(timespent: Double) {
+        Analytics.logEvent("businessCompanyDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackBusinessCompanyDidCreate() {
+        Analytics.logEvent("businessCompanyDidCreate", parameters: nil)
+    }
+
+    public func trackBusinessCompanyDidCreateForAd() {
+        Analytics.logEvent("businessCompanyDidCreateForAd", parameters: nil)
+    }
+
+    public func trackBusinessDidCollect() {
+        Analytics.logEvent("businessDidCollect", parameters: nil)
+    }
+
+    public func trackBusinessCollectMultiplyDidPresent() {
+        Analytics.logEvent("businessCollectMultiplyDidPresent", parameters: nil)
+    }
+
+    public func trackBusinessCollectMultiplyDidDismiss(timespent: Double) {
+        Analytics.logEvent("businessCollectMultiplyDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackBusinessCollectMultiplyDidTapCollect() {
+        Analytics.logEvent("businessCollectMultiplyDidTapCollect", parameters: nil)
+    }
+
+    public func trackBusinessCollectMultiplyDidTapMultiply() {
+        Analytics.logEvent("businessCollectMultiplyDidTapMultiply", parameters: nil)
+    }
+
+    public func trackBusinessDidStartUpgrade() {
+        Analytics.logEvent("businessDidStartUpgrade", parameters: nil)
+    }
+
+    public func trackBusinessDidUpgrade() {
+        Analytics.logEvent("businessDidUpgrade", parameters: nil)
+    }
+
+    public func trackBusinessDidFailUpgrade() {
+        Analytics.logEvent("businessDidFailUpgrade", parameters: nil)
+    }
+
+    public func trackBusinessDidRescue() {
+        Analytics.logEvent("businessDidRescue", parameters: nil)
+    }
+
+    public func trackBusinessCrisisDidPresent() {
+        Analytics.logEvent("businessCrisisDidPresent", parameters: nil)
+    }
+
+    public func trackBusinessCrisisDidDismiss(timespent: Double) {
+        Analytics.logEvent("businessCrisisDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackBusinessCrisisDidClose() {
+        Analytics.logEvent("businessCrisisDidClose", parameters: nil)
+    }
+
     public func trackOtherUserDidLike() {
         Analytics.logEvent("otherUserDidLike", parameters: nil)
     }

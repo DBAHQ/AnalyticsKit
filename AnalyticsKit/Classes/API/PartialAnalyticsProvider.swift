@@ -188,6 +188,26 @@ public extension PartialAnalyticsProvider {
     func trackMinersListBannerDidTap(type: String) {}
     func trackMinersListDidDismiss(timespent: Double) {}
     func trackMinersListDidPresent() {}
+    func trackBusinessListDidPresent() {}
+    func trackBusinessListDidDismiss(timespent: Double) {}
+    func trackBusinessListBannerDidPresent(type: String) {}
+    func trackBusinessListBannerDidTap(type: String) {}
+    func trackBusinessCompanyDidPresent() {}
+    func trackBusinessCompanyDidDismiss(timespent: Double) {}
+    func trackBusinessCompanyDidCreate() {}
+    func trackBusinessCompanyDidCreateForAd() {}
+    func trackBusinessDidCollect() {}
+    func trackBusinessCollectMultiplyDidPresent() {}
+    func trackBusinessCollectMultiplyDidDismiss(timespent: Double) {}
+    func trackBusinessCollectMultiplyDidTapCollect() {}
+    func trackBusinessCollectMultiplyDidTapMultiply() {}
+    func trackBusinessDidStartUpgrade() {}
+    func trackBusinessDidUpgrade() {}
+    func trackBusinessDidFailUpgrade() {}
+    func trackBusinessDidRescue() {}
+    func trackBusinessCrisisDidPresent() {}
+    func trackBusinessCrisisDidDismiss(timespent: Double) {}
+    func trackBusinessCrisisDidClose() {}
     func trackOtherUserDidLike() {}
     func trackOtherUserDidUnlike() {}
     func trackOtherUserLikesDidDismiss(timespent: Double) {}
