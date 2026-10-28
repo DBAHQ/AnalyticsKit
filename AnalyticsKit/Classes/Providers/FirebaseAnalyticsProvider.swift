@@ -342,8 +342,8 @@ public final class FirebaseAnalyticsProvider: AnalyticsProvider {
         Analytics.logEvent("luckySpinDidDismiss", parameters: ["timespentSec": timespent])
     }
 
-    public func trackLuckySpinDidSpin() {
-        Analytics.logEvent("luckySpinDidSpin", parameters: nil)
+    public func trackLuckySpinDidSpin(spinCount: Int, totalSpinCount: Int) {
+        Analytics.logEvent("luckySpinDidSpin", parameters: ["spinCount": spinCount, "totalSpinCount": totalSpinCount])
     }
 
     public func trackProfileDidPresent() {

@@ -531,9 +531,9 @@ public final class AnalyticsManager: AnalyticsProvider {
         providers.forEach { $0.trackLuckySpinDidDismiss(timespent: timespent) }
     }
 
-    public func trackLuckySpinDidSpin() {
-        AnalyticsKitLog.event("trackLuckySpinDidSpin")
-        providers.forEach { $0.trackLuckySpinDidSpin() }
+    public func trackLuckySpinDidSpin(spinCount: Int, totalSpinCount: Int) {
+        AnalyticsKitLog.event("trackLuckySpinDidSpin", ["spinCount": spinCount, "totalSpinCount": totalSpinCount])
+        providers.forEach { $0.trackLuckySpinDidSpin(spinCount: spinCount, totalSpinCount: totalSpinCount) }
     }
 
     public func trackProfileDidPresent() {

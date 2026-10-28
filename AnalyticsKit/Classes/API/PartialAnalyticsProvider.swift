@@ -93,7 +93,7 @@ public extension PartialAnalyticsProvider {
     func trackDailyRewardsDidMultiplyReward(day: Int) {}
     func trackLuckySpinDidPresent() {}
     func trackLuckySpinDidDismiss(timespent: Double) {}
-    func trackLuckySpinDidSpin() {}
+    func trackLuckySpinDidSpin(spinCount: Int, totalSpinCount: Int) {}
     func trackProfileDidPresent() {}
     func trackProfileDidTapAvatar() {}
     func trackProfileDidTapAvatarEdit() {}

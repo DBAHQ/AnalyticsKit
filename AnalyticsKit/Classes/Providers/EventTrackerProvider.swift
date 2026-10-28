@@ -1013,8 +1013,8 @@ public final class EventTrackerProvider: AnalyticsProvider {
         trackEvent(name: "luckySpinDidDismiss", properties: ["timespentSec": timespent])
     }
 
-    public func trackLuckySpinDidSpin() {
-        trackEvent(name: "luckySpinDidSpin")
+    public func trackLuckySpinDidSpin(spinCount: Int, totalSpinCount: Int) {
+        trackEvent(name: "luckySpinDidSpin", properties: ["spinCount": spinCount, "totalSpinCount": totalSpinCount])
     }
 
     // MARK: - Slots

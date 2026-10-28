@@ -112,7 +112,7 @@ public protocol AnalyticsProvider: AnyObject {
     
     func trackLuckySpinDidPresent()
     func trackLuckySpinDidDismiss(timespent: Double)
-    func trackLuckySpinDidSpin()
+    func trackLuckySpinDidSpin(spinCount: Int, totalSpinCount: Int)
     
     func trackProfileDidPresent()
     func trackProfileDidTapAvatar()

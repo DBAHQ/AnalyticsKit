@@ -354,8 +354,8 @@ public final class AppMetricaAnalyticsProvider: AnalyticsProvider {
         AppMetrica.reportEvent(name: "luckySpinDidDismiss", parameters: ["timespentSec": timespent])
     }
 
-    public func trackLuckySpinDidSpin() {
-        AppMetrica.reportEvent(name: "luckySpinDidSpin", parameters: nil)
+    public func trackLuckySpinDidSpin(spinCount: Int, totalSpinCount: Int) {
+        AppMetrica.reportEvent(name: "luckySpinDidSpin", parameters: ["spinCount" : spinCount, "totalSpinCount" : totalSpinCount])
     }
 
     public func trackProfileDidPresent() {
