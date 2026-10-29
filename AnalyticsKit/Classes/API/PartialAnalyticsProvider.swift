@@ -188,26 +188,29 @@ public extension PartialAnalyticsProvider {
     func trackMinersListBannerDidTap(type: String) {}
     func trackMinersListDidDismiss(timespent: Double) {}
     func trackMinersListDidPresent() {}
-    func trackBusinessListDidPresent() {}
-    func trackBusinessListDidDismiss(timespent: Double) {}
-    func trackBusinessListBannerDidPresent(type: String) {}
-    func trackBusinessListBannerDidTap(type: String) {}
-    func trackBusinessCompanyDidPresent() {}
-    func trackBusinessCompanyDidDismiss(timespent: Double) {}
-    func trackBusinessCompanyDidCreate() {}
-    func trackBusinessCompanyDidCreateForAd() {}
-    func trackBusinessDidCollect() {}
-    func trackBusinessCollectMultiplyDidPresent() {}
-    func trackBusinessCollectMultiplyDidDismiss(timespent: Double) {}
-    func trackBusinessCollectMultiplyDidTapCollect() {}
-    func trackBusinessCollectMultiplyDidTapMultiply() {}
-    func trackBusinessDidStartUpgrade() {}
-    func trackBusinessDidUpgrade() {}
-    func trackBusinessDidFailUpgrade() {}
-    func trackBusinessDidRescue() {}
-    func trackBusinessCrisisDidPresent() {}
-    func trackBusinessCrisisDidDismiss(timespent: Double) {}
-    func trackBusinessCrisisDidClose() {}
+    func trackDashboardDidTapBusiness() {}
+    func trackCompaniesListDidPresent() {}
+    func trackCompaniesListDidDismiss(timespent: Double) {}
+    func trackCompaniesListBannerDidPresent(type: String) {}
+    func trackCompaniesListBannerDidTap(type: String) {}
+    func trackCompaniesRatingDidPresent() {}
+    func trackCompaniesRatingDidDismiss(timespent: Double) {}
+    func trackCompanyDidPresent() {}
+    func trackCompanyDidDismiss(timespent: Double) {}
+    func trackCompanyDidCreate() {}
+    func trackCompanyDidCreateForAd() {}
+    func trackCompanyDidCollect() {}
+    func trackCompanyCollectMultiplyDidPresent() {}
+    func trackCompanyCollectMultiplyDidDismiss(timespent: Double) {}
+    func trackCompanyCollectMultiplyDidTapCollect() {}
+    func trackCompanyCollectMultiplyDidTapMultiply() {}
+    func trackCompanyDidStartUpdate() {}
+    func trackCompanyDidUpdate() {}
+    func trackCompanyDidFailUpdate() {}
+    func trackCompanyDidFix() {}
+    func trackCompanyFixDidPresent() {}
+    func trackCompanyFixDidDismiss(timespent: Double) {}
+    func trackCompanyFixDidClose() {}
     func trackOtherUserDidLike() {}
     func trackOtherUserDidUnlike() {}
     func trackOtherUserLikesDidDismiss(timespent: Double) {}

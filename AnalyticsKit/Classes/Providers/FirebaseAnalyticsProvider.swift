@@ -759,84 +759,96 @@ public final class FirebaseAnalyticsProvider: AnalyticsProvider {
 
     // MARK: - Бизнес
 
-    public func trackBusinessListDidPresent() {
-        Analytics.logEvent("businessListDidPresent", parameters: nil)
+    public func trackDashboardDidTapBusiness() {
+        Analytics.logEvent("dashboardDidTapBusiness", parameters: nil)
     }
 
-    public func trackBusinessListDidDismiss(timespent: Double) {
-        Analytics.logEvent("businessListDidDismiss", parameters: ["timespentSec": timespent])
+    public func trackCompaniesListDidPresent() {
+        Analytics.logEvent("companiesListDidPresent", parameters: nil)
     }
 
-    public func trackBusinessListBannerDidPresent(type: String) {
-        Analytics.logEvent("businessListBannerDidPresent", parameters: ["type": type])
+    public func trackCompaniesListDidDismiss(timespent: Double) {
+        Analytics.logEvent("companiesListDidDismiss", parameters: ["timespent": timespent, "timespentSec": Int(timespent)])
     }
 
-    public func trackBusinessListBannerDidTap(type: String) {
-        Analytics.logEvent("businessListBannerDidTap", parameters: ["type": type])
+    public func trackCompaniesListBannerDidPresent(type: String) {
+        Analytics.logEvent("companiesListBannerDidPresent", parameters: ["type": type])
     }
 
-    public func trackBusinessCompanyDidPresent() {
-        Analytics.logEvent("businessCompanyDidPresent", parameters: nil)
+    public func trackCompaniesListBannerDidTap(type: String) {
+        Analytics.logEvent("companiesListBannerDidTap", parameters: ["type": type])
     }
 
-    public func trackBusinessCompanyDidDismiss(timespent: Double) {
-        Analytics.logEvent("businessCompanyDidDismiss", parameters: ["timespentSec": timespent])
+    public func trackCompaniesRatingDidPresent() {
+        Analytics.logEvent("companiesRatingDidPresent", parameters: nil)
     }
 
-    public func trackBusinessCompanyDidCreate() {
-        Analytics.logEvent("businessCompanyDidCreate", parameters: nil)
+    public func trackCompaniesRatingDidDismiss(timespent: Double) {
+        Analytics.logEvent("companiesRatingDidDismiss", parameters: ["timespent": timespent, "timespentSec": Int(timespent)])
     }
 
-    public func trackBusinessCompanyDidCreateForAd() {
-        Analytics.logEvent("businessCompanyDidCreateForAd", parameters: nil)
+    public func trackCompanyDidPresent() {
+        Analytics.logEvent("companyDidPresent", parameters: nil)
     }
 
-    public func trackBusinessDidCollect() {
-        Analytics.logEvent("businessDidCollect", parameters: nil)
+    public func trackCompanyDidDismiss(timespent: Double) {
+        Analytics.logEvent("companyDidDismiss", parameters: ["timespent": timespent, "timespentSec": Int(timespent)])
     }
 
-    public func trackBusinessCollectMultiplyDidPresent() {
-        Analytics.logEvent("businessCollectMultiplyDidPresent", parameters: nil)
+    public func trackCompanyDidCreate() {
+        Analytics.logEvent("companyDidCreate", parameters: nil)
     }
 
-    public func trackBusinessCollectMultiplyDidDismiss(timespent: Double) {
-        Analytics.logEvent("businessCollectMultiplyDidDismiss", parameters: ["timespentSec": timespent])
+    public func trackCompanyDidCreateForAd() {
+        Analytics.logEvent("companyDidCreateForAd", parameters: nil)
     }
 
-    public func trackBusinessCollectMultiplyDidTapCollect() {
-        Analytics.logEvent("businessCollectMultiplyDidTapCollect", parameters: nil)
+    public func trackCompanyDidCollect() {
+        Analytics.logEvent("companyDidCollect", parameters: nil)
     }
 
-    public func trackBusinessCollectMultiplyDidTapMultiply() {
-        Analytics.logEvent("businessCollectMultiplyDidTapMultiply", parameters: nil)
+    public func trackCompanyCollectMultiplyDidPresent() {
+        Analytics.logEvent("companyCollectMultiplyDidPresent", parameters: nil)
     }
 
-    public func trackBusinessDidStartUpgrade() {
-        Analytics.logEvent("businessDidStartUpgrade", parameters: nil)
+    public func trackCompanyCollectMultiplyDidDismiss(timespent: Double) {
+        Analytics.logEvent("companyCollectMultiplyDidDismiss", parameters: ["timespent": timespent, "timespentSec": Int(timespent)])
     }
 
-    public func trackBusinessDidUpgrade() {
-        Analytics.logEvent("businessDidUpgrade", parameters: nil)
+    public func trackCompanyCollectMultiplyDidTapCollect() {
+        Analytics.logEvent("companyCollectMultiplyDidTapCollect", parameters: nil)
     }
 
-    public func trackBusinessDidFailUpgrade() {
-        Analytics.logEvent("businessDidFailUpgrade", parameters: nil)
+    public func trackCompanyCollectMultiplyDidTapMultiply() {
+        Analytics.logEvent("companyCollectMultiplyDidTapMultiply", parameters: nil)
     }
 
-    public func trackBusinessDidRescue() {
-        Analytics.logEvent("businessDidRescue", parameters: nil)
+    public func trackCompanyDidStartUpdate() {
+        Analytics.logEvent("companyDidStartUpdate", parameters: nil)
     }
 
-    public func trackBusinessCrisisDidPresent() {
-        Analytics.logEvent("businessCrisisDidPresent", parameters: nil)
+    public func trackCompanyDidUpdate() {
+        Analytics.logEvent("companyDidUpdate", parameters: nil)
     }
 
-    public func trackBusinessCrisisDidDismiss(timespent: Double) {
-        Analytics.logEvent("businessCrisisDidDismiss", parameters: ["timespentSec": timespent])
+    public func trackCompanyDidFailUpdate() {
+        Analytics.logEvent("companyDidFailUpdate", parameters: nil)
     }
 
-    public func trackBusinessCrisisDidClose() {
-        Analytics.logEvent("businessCrisisDidClose", parameters: nil)
+    public func trackCompanyDidFix() {
+        Analytics.logEvent("companyDidFix", parameters: nil)
+    }
+
+    public func trackCompanyFixDidPresent() {
+        Analytics.logEvent("companyFixDidPresent", parameters: nil)
+    }
+
+    public func trackCompanyFixDidDismiss(timespent: Double) {
+        Analytics.logEvent("companyFixDidDismiss", parameters: ["timespent": timespent, "timespentSec": Int(timespent)])
+    }
+
+    public func trackCompanyFixDidClose() {
+        Analytics.logEvent("companyFixDidClose", parameters: nil)
     }
 
     public func trackOtherUserDidLike() {

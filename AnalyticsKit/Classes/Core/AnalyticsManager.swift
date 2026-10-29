@@ -988,104 +988,119 @@ public final class AnalyticsManager: AnalyticsProvider {
 
     // MARK: - Бизнес
 
-    public func trackBusinessListDidPresent() {
-        AnalyticsKitLog.event("trackBusinessListDidPresent")
-        providers.forEach { $0.trackBusinessListDidPresent() }
+    public func trackDashboardDidTapBusiness() {
+        AnalyticsKitLog.event("trackDashboardDidTapBusiness")
+        providers.forEach { $0.trackDashboardDidTapBusiness() }
     }
 
-    public func trackBusinessListDidDismiss(timespent: Double) {
-        AnalyticsKitLog.event("trackBusinessListDidDismiss", ["timespentSec": timespent])
-        providers.forEach { $0.trackBusinessListDidDismiss(timespent: timespent) }
+    public func trackCompaniesListDidPresent() {
+        AnalyticsKitLog.event("trackCompaniesListDidPresent")
+        providers.forEach { $0.trackCompaniesListDidPresent() }
     }
 
-    public func trackBusinessListBannerDidPresent(type: String) {
-        AnalyticsKitLog.event("trackBusinessListBannerDidPresent", ["type": type])
-        providers.forEach { $0.trackBusinessListBannerDidPresent(type: type) }
+    public func trackCompaniesListDidDismiss(timespent: Double) {
+        AnalyticsKitLog.event("trackCompaniesListDidDismiss", ["timespent": timespent, "timespentSec": Int(timespent)])
+        providers.forEach { $0.trackCompaniesListDidDismiss(timespent: timespent) }
     }
 
-    public func trackBusinessListBannerDidTap(type: String) {
-        AnalyticsKitLog.event("trackBusinessListBannerDidTap", ["type": type])
-        providers.forEach { $0.trackBusinessListBannerDidTap(type: type) }
+    public func trackCompaniesListBannerDidPresent(type: String) {
+        AnalyticsKitLog.event("trackCompaniesListBannerDidPresent", ["type": type])
+        providers.forEach { $0.trackCompaniesListBannerDidPresent(type: type) }
     }
 
-    public func trackBusinessCompanyDidPresent() {
-        AnalyticsKitLog.event("trackBusinessCompanyDidPresent")
-        providers.forEach { $0.trackBusinessCompanyDidPresent() }
+    public func trackCompaniesListBannerDidTap(type: String) {
+        AnalyticsKitLog.event("trackCompaniesListBannerDidTap", ["type": type])
+        providers.forEach { $0.trackCompaniesListBannerDidTap(type: type) }
     }
 
-    public func trackBusinessCompanyDidDismiss(timespent: Double) {
-        AnalyticsKitLog.event("trackBusinessCompanyDidDismiss", ["timespentSec": timespent])
-        providers.forEach { $0.trackBusinessCompanyDidDismiss(timespent: timespent) }
+    public func trackCompaniesRatingDidPresent() {
+        AnalyticsKitLog.event("trackCompaniesRatingDidPresent")
+        providers.forEach { $0.trackCompaniesRatingDidPresent() }
     }
 
-    public func trackBusinessCompanyDidCreate() {
-        AnalyticsKitLog.event("trackBusinessCompanyDidCreate")
-        providers.forEach { $0.trackBusinessCompanyDidCreate() }
+    public func trackCompaniesRatingDidDismiss(timespent: Double) {
+        AnalyticsKitLog.event("trackCompaniesRatingDidDismiss", ["timespent": timespent, "timespentSec": Int(timespent)])
+        providers.forEach { $0.trackCompaniesRatingDidDismiss(timespent: timespent) }
     }
 
-    public func trackBusinessCompanyDidCreateForAd() {
-        AnalyticsKitLog.event("trackBusinessCompanyDidCreateForAd")
-        providers.forEach { $0.trackBusinessCompanyDidCreateForAd() }
+    public func trackCompanyDidPresent() {
+        AnalyticsKitLog.event("trackCompanyDidPresent")
+        providers.forEach { $0.trackCompanyDidPresent() }
     }
 
-    public func trackBusinessDidCollect() {
-        AnalyticsKitLog.event("trackBusinessDidCollect")
-        providers.forEach { $0.trackBusinessDidCollect() }
+    public func trackCompanyDidDismiss(timespent: Double) {
+        AnalyticsKitLog.event("trackCompanyDidDismiss", ["timespent": timespent, "timespentSec": Int(timespent)])
+        providers.forEach { $0.trackCompanyDidDismiss(timespent: timespent) }
     }
 
-    public func trackBusinessCollectMultiplyDidPresent() {
-        AnalyticsKitLog.event("trackBusinessCollectMultiplyDidPresent")
-        providers.forEach { $0.trackBusinessCollectMultiplyDidPresent() }
+    public func trackCompanyDidCreate() {
+        AnalyticsKitLog.event("trackCompanyDidCreate")
+        providers.forEach { $0.trackCompanyDidCreate() }
     }
 
-    public func trackBusinessCollectMultiplyDidDismiss(timespent: Double) {
-        AnalyticsKitLog.event("trackBusinessCollectMultiplyDidDismiss", ["timespentSec": timespent])
-        providers.forEach { $0.trackBusinessCollectMultiplyDidDismiss(timespent: timespent) }
+    public func trackCompanyDidCreateForAd() {
+        AnalyticsKitLog.event("trackCompanyDidCreateForAd")
+        providers.forEach { $0.trackCompanyDidCreateForAd() }
     }
 
-    public func trackBusinessCollectMultiplyDidTapCollect() {
-        AnalyticsKitLog.event("trackBusinessCollectMultiplyDidTapCollect")
-        providers.forEach { $0.trackBusinessCollectMultiplyDidTapCollect() }
+    public func trackCompanyDidCollect() {
+        AnalyticsKitLog.event("trackCompanyDidCollect")
+        providers.forEach { $0.trackCompanyDidCollect() }
     }
 
-    public func trackBusinessCollectMultiplyDidTapMultiply() {
-        AnalyticsKitLog.event("trackBusinessCollectMultiplyDidTapMultiply")
-        providers.forEach { $0.trackBusinessCollectMultiplyDidTapMultiply() }
+    public func trackCompanyCollectMultiplyDidPresent() {
+        AnalyticsKitLog.event("trackCompanyCollectMultiplyDidPresent")
+        providers.forEach { $0.trackCompanyCollectMultiplyDidPresent() }
     }
 
-    public func trackBusinessDidStartUpgrade() {
-        AnalyticsKitLog.event("trackBusinessDidStartUpgrade")
-        providers.forEach { $0.trackBusinessDidStartUpgrade() }
+    public func trackCompanyCollectMultiplyDidDismiss(timespent: Double) {
+        AnalyticsKitLog.event("trackCompanyCollectMultiplyDidDismiss", ["timespent": timespent, "timespentSec": Int(timespent)])
+        providers.forEach { $0.trackCompanyCollectMultiplyDidDismiss(timespent: timespent) }
     }
 
-    public func trackBusinessDidUpgrade() {
-        AnalyticsKitLog.event("trackBusinessDidUpgrade")
-        providers.forEach { $0.trackBusinessDidUpgrade() }
+    public func trackCompanyCollectMultiplyDidTapCollect() {
+        AnalyticsKitLog.event("trackCompanyCollectMultiplyDidTapCollect")
+        providers.forEach { $0.trackCompanyCollectMultiplyDidTapCollect() }
     }
 
-    public func trackBusinessDidFailUpgrade() {
-        AnalyticsKitLog.event("trackBusinessDidFailUpgrade")
-        providers.forEach { $0.trackBusinessDidFailUpgrade() }
+    public func trackCompanyCollectMultiplyDidTapMultiply() {
+        AnalyticsKitLog.event("trackCompanyCollectMultiplyDidTapMultiply")
+        providers.forEach { $0.trackCompanyCollectMultiplyDidTapMultiply() }
     }
 
-    public func trackBusinessDidRescue() {
-        AnalyticsKitLog.event("trackBusinessDidRescue")
-        providers.forEach { $0.trackBusinessDidRescue() }
+    public func trackCompanyDidStartUpdate() {
+        AnalyticsKitLog.event("trackCompanyDidStartUpdate")
+        providers.forEach { $0.trackCompanyDidStartUpdate() }
     }
 
-    public func trackBusinessCrisisDidPresent() {
-        AnalyticsKitLog.event("trackBusinessCrisisDidPresent")
-        providers.forEach { $0.trackBusinessCrisisDidPresent() }
+    public func trackCompanyDidUpdate() {
+        AnalyticsKitLog.event("trackCompanyDidUpdate")
+        providers.forEach { $0.trackCompanyDidUpdate() }
     }
 
-    public func trackBusinessCrisisDidDismiss(timespent: Double) {
-        AnalyticsKitLog.event("trackBusinessCrisisDidDismiss", ["timespentSec": timespent])
-        providers.forEach { $0.trackBusinessCrisisDidDismiss(timespent: timespent) }
+    public func trackCompanyDidFailUpdate() {
+        AnalyticsKitLog.event("trackCompanyDidFailUpdate")
+        providers.forEach { $0.trackCompanyDidFailUpdate() }
     }
 
-    public func trackBusinessCrisisDidClose() {
-        AnalyticsKitLog.event("trackBusinessCrisisDidClose")
-        providers.forEach { $0.trackBusinessCrisisDidClose() }
+    public func trackCompanyDidFix() {
+        AnalyticsKitLog.event("trackCompanyDidFix")
+        providers.forEach { $0.trackCompanyDidFix() }
+    }
+
+    public func trackCompanyFixDidPresent() {
+        AnalyticsKitLog.event("trackCompanyFixDidPresent")
+        providers.forEach { $0.trackCompanyFixDidPresent() }
+    }
+
+    public func trackCompanyFixDidDismiss(timespent: Double) {
+        AnalyticsKitLog.event("trackCompanyFixDidDismiss", ["timespent": timespent, "timespentSec": Int(timespent)])
+        providers.forEach { $0.trackCompanyFixDidDismiss(timespent: timespent) }
+    }
+
+    public func trackCompanyFixDidClose() {
+        AnalyticsKitLog.event("trackCompanyFixDidClose")
+        providers.forEach { $0.trackCompanyFixDidClose() }
     }
 
     public func trackOtherUserDidLike() {
