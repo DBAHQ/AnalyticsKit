@@ -757,6 +757,84 @@ public final class FirebaseAnalyticsProvider: AnalyticsProvider {
         Analytics.logEvent("minersListDidPresent", parameters: nil)
     }
 
+    // MARK: - Майнер TradingClub (тапалка; имена событий — как на Android)
+
+    public func trackDashboardDidTapMiner() {
+        Analytics.logEvent("dashboardDidTapMiner", parameters: nil)
+    }
+
+    public func trackMinerDidTapBoost() {
+        Analytics.logEvent("minerDidTapBoost", parameters: nil)
+    }
+
+    public func trackMinerDidSelectShopTab(tab: String) {
+        Analytics.logEvent("minerDidSelectShopTab", parameters: ["tab": tab])
+    }
+
+    public func trackMinerDidTapShopItem(itemCode: String) {
+        Analytics.logEvent("minerDidTapShopItem", parameters: ["itemCode": itemCode])
+    }
+
+    public func trackMinerShopItemDidPresent(itemCode: String) {
+        Analytics.logEvent("minerShopItemDidPresent", parameters: ["itemCode": itemCode])
+    }
+
+    public func trackMinerShopItemDidDismiss(itemCode: String, timespent: Double) {
+        Analytics.logEvent("minerShopItemDidDismiss", parameters: ["itemCode": itemCode, "timespentSec": timespent])
+    }
+
+    public func trackMinerShopItemDidTapBuy(itemCode: String, price: Decimal) {
+        Analytics.logEvent("minerShopItemDidTapBuy", parameters: ["itemCode": itemCode, "price": price.double])
+    }
+
+    public func trackMinerShopItemDidPurchase(itemCode: String, price: Decimal, copies: Int) {
+        Analytics.logEvent("minerShopItemDidPurchase", parameters: ["itemCode": itemCode, "price": price.double, "copies": copies])
+    }
+
+    public func trackMinerOfflineIncomeDidPresent(amount: Decimal) {
+        Analytics.logEvent("minerOfflineIncomeDidPresent", parameters: ["amount": amount.double])
+    }
+
+    public func trackMinerOfflineIncomeDidDismiss(timespent: Double) {
+        Analytics.logEvent("minerOfflineIncomeDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackMinerOfflineIncomeDidTapMultiply(amount: Decimal) {
+        Analytics.logEvent("minerOfflineIncomeDidTapMultiply", parameters: ["amount": amount.double])
+    }
+
+    public func trackMinerOfflineIncomeDidTapClaim(amount: Decimal) {
+        Analytics.logEvent("minerOfflineIncomeDidTapClaim", parameters: ["amount": amount.double])
+    }
+
+    public func trackMinerTaskCompletedDidPresent(position: Int) {
+        Analytics.logEvent("minerTaskCompletedDidPresent", parameters: ["position": position])
+    }
+
+    public func trackMinerTaskCompletedDidDismiss(timespent: Double) {
+        Analytics.logEvent("minerTaskCompletedDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackMinerLevelUpDidPresent(level: Int) {
+        Analytics.logEvent("minerLevelUpDidPresent", parameters: ["level": level])
+    }
+
+    public func trackMinerLevelUpDidDismiss(timespent: Double) {
+        Analytics.logEvent("minerLevelUpDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackMinerBoostStepDidIncrease(step: Decimal, timeToReach: Double) {
+        Analytics.logEvent("minerBoostStepDidIncrease", parameters: ["step": step.double, "timeToReachSec": timeToReach])
+    }
+
+    public func trackMinerBoostDidReset(step: Decimal, holdDuration: Double) {
+        Analytics.logEvent("minerBoostDidReset", parameters: ["step": step.double, "holdDurationSec": holdDuration])
+    }
+
+    public func trackMoneyOfferMinerDidTap() {
+        Analytics.logEvent("moneyOfferMinerDidTap", parameters: nil)
+    }
+
     // MARK: - Бизнес
 
     public func trackDashboardDidTapBusiness() {

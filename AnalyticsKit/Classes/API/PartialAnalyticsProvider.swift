@@ -189,6 +189,25 @@ public extension PartialAnalyticsProvider {
     func trackMinersListDidDismiss(timespent: Double) {}
     func trackMinersListDidPresent() {}
     func trackDashboardDidTapBusiness() {}
+    func trackDashboardDidTapMiner() {}
+    func trackMinerDidTapBoost() {}
+    func trackMinerDidSelectShopTab(tab: String) {}
+    func trackMinerDidTapShopItem(itemCode: String) {}
+    func trackMinerShopItemDidPresent(itemCode: String) {}
+    func trackMinerShopItemDidDismiss(itemCode: String, timespent: Double) {}
+    func trackMinerShopItemDidTapBuy(itemCode: String, price: Decimal) {}
+    func trackMinerShopItemDidPurchase(itemCode: String, price: Decimal, copies: Int) {}
+    func trackMinerOfflineIncomeDidPresent(amount: Decimal) {}
+    func trackMinerOfflineIncomeDidDismiss(timespent: Double) {}
+    func trackMinerOfflineIncomeDidTapMultiply(amount: Decimal) {}
+    func trackMinerOfflineIncomeDidTapClaim(amount: Decimal) {}
+    func trackMinerTaskCompletedDidPresent(position: Int) {}
+    func trackMinerTaskCompletedDidDismiss(timespent: Double) {}
+    func trackMinerLevelUpDidPresent(level: Int) {}
+    func trackMinerLevelUpDidDismiss(timespent: Double) {}
+    func trackMinerBoostStepDidIncrease(step: Decimal, timeToReach: Double) {}
+    func trackMinerBoostDidReset(step: Decimal, holdDuration: Double) {}
+    func trackMoneyOfferMinerDidTap() {}
     func trackCompaniesListDidPresent() {}
     func trackCompaniesListDidDismiss(timespent: Double) {}
     func trackCompaniesListBannerDidPresent(type: String) {}

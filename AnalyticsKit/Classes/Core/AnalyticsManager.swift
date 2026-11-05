@@ -986,6 +986,103 @@ public final class AnalyticsManager: AnalyticsProvider {
         providers.forEach { $0.trackMinersListDidPresent() }
     }
 
+    // MARK: - Майнер TradingClub (тапалка; имена событий — как на Android)
+
+    public func trackDashboardDidTapMiner() {
+        AnalyticsKitLog.event("trackDashboardDidTapMiner")
+        providers.forEach { $0.trackDashboardDidTapMiner() }
+    }
+
+    public func trackMinerDidTapBoost() {
+        AnalyticsKitLog.event("trackMinerDidTapBoost")
+        providers.forEach { $0.trackMinerDidTapBoost() }
+    }
+
+    public func trackMinerDidSelectShopTab(tab: String) {
+        AnalyticsKitLog.event("trackMinerDidSelectShopTab", ["tab": tab])
+        providers.forEach { $0.trackMinerDidSelectShopTab(tab: tab) }
+    }
+
+    public func trackMinerDidTapShopItem(itemCode: String) {
+        AnalyticsKitLog.event("trackMinerDidTapShopItem", ["itemCode": itemCode])
+        providers.forEach { $0.trackMinerDidTapShopItem(itemCode: itemCode) }
+    }
+
+    public func trackMinerShopItemDidPresent(itemCode: String) {
+        AnalyticsKitLog.event("trackMinerShopItemDidPresent", ["itemCode": itemCode])
+        providers.forEach { $0.trackMinerShopItemDidPresent(itemCode: itemCode) }
+    }
+
+    public func trackMinerShopItemDidDismiss(itemCode: String, timespent: Double) {
+        AnalyticsKitLog.event("trackMinerShopItemDidDismiss", ["itemCode": itemCode, "timespentSec": timespent])
+        providers.forEach { $0.trackMinerShopItemDidDismiss(itemCode: itemCode, timespent: timespent) }
+    }
+
+    public func trackMinerShopItemDidTapBuy(itemCode: String, price: Decimal) {
+        AnalyticsKitLog.event("trackMinerShopItemDidTapBuy", ["itemCode": itemCode, "price": price.double])
+        providers.forEach { $0.trackMinerShopItemDidTapBuy(itemCode: itemCode, price: price) }
+    }
+
+    public func trackMinerShopItemDidPurchase(itemCode: String, price: Decimal, copies: Int) {
+        AnalyticsKitLog.event("trackMinerShopItemDidPurchase", ["itemCode": itemCode, "price": price.double, "copies": copies])
+        providers.forEach { $0.trackMinerShopItemDidPurchase(itemCode: itemCode, price: price, copies: copies) }
+    }
+
+    public func trackMinerOfflineIncomeDidPresent(amount: Decimal) {
+        AnalyticsKitLog.event("trackMinerOfflineIncomeDidPresent", ["amount": amount.double])
+        providers.forEach { $0.trackMinerOfflineIncomeDidPresent(amount: amount) }
+    }
+
+    public func trackMinerOfflineIncomeDidDismiss(timespent: Double) {
+        AnalyticsKitLog.event("trackMinerOfflineIncomeDidDismiss", ["timespentSec": timespent])
+        providers.forEach { $0.trackMinerOfflineIncomeDidDismiss(timespent: timespent) }
+    }
+
+    public func trackMinerOfflineIncomeDidTapMultiply(amount: Decimal) {
+        AnalyticsKitLog.event("trackMinerOfflineIncomeDidTapMultiply", ["amount": amount.double])
+        providers.forEach { $0.trackMinerOfflineIncomeDidTapMultiply(amount: amount) }
+    }
+
+    public func trackMinerOfflineIncomeDidTapClaim(amount: Decimal) {
+        AnalyticsKitLog.event("trackMinerOfflineIncomeDidTapClaim", ["amount": amount.double])
+        providers.forEach { $0.trackMinerOfflineIncomeDidTapClaim(amount: amount) }
+    }
+
+    public func trackMinerTaskCompletedDidPresent(position: Int) {
+        AnalyticsKitLog.event("trackMinerTaskCompletedDidPresent", ["position": position])
+        providers.forEach { $0.trackMinerTaskCompletedDidPresent(position: position) }
+    }
+
+    public func trackMinerTaskCompletedDidDismiss(timespent: Double) {
+        AnalyticsKitLog.event("trackMinerTaskCompletedDidDismiss", ["timespentSec": timespent])
+        providers.forEach { $0.trackMinerTaskCompletedDidDismiss(timespent: timespent) }
+    }
+
+    public func trackMinerLevelUpDidPresent(level: Int) {
+        AnalyticsKitLog.event("trackMinerLevelUpDidPresent", ["level": level])
+        providers.forEach { $0.trackMinerLevelUpDidPresent(level: level) }
+    }
+
+    public func trackMinerLevelUpDidDismiss(timespent: Double) {
+        AnalyticsKitLog.event("trackMinerLevelUpDidDismiss", ["timespentSec": timespent])
+        providers.forEach { $0.trackMinerLevelUpDidDismiss(timespent: timespent) }
+    }
+
+    public func trackMinerBoostStepDidIncrease(step: Decimal, timeToReach: Double) {
+        AnalyticsKitLog.event("trackMinerBoostStepDidIncrease", ["step": step.double, "timeToReachSec": timeToReach])
+        providers.forEach { $0.trackMinerBoostStepDidIncrease(step: step, timeToReach: timeToReach) }
+    }
+
+    public func trackMinerBoostDidReset(step: Decimal, holdDuration: Double) {
+        AnalyticsKitLog.event("trackMinerBoostDidReset", ["step": step.double, "holdDurationSec": holdDuration])
+        providers.forEach { $0.trackMinerBoostDidReset(step: step, holdDuration: holdDuration) }
+    }
+
+    public func trackMoneyOfferMinerDidTap() {
+        AnalyticsKitLog.event("trackMoneyOfferMinerDidTap")
+        providers.forEach { $0.trackMoneyOfferMinerDidTap() }
+    }
+
     // MARK: - Бизнес
 
     public func trackDashboardDidTapBusiness() {

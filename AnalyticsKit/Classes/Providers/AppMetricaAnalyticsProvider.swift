@@ -809,6 +809,84 @@ public final class AppMetricaAnalyticsProvider: AnalyticsProvider {
         AppMetrica.reportEvent(name: "minersListDidPresent", parameters: nil)
     }
 
+    // MARK: - Майнер TradingClub (тапалка; имена событий — как на Android)
+
+    public func trackDashboardDidTapMiner() {
+        AppMetrica.reportEvent(name: "dashboardDidTapMiner", parameters: nil)
+    }
+
+    public func trackMinerDidTapBoost() {
+        AppMetrica.reportEvent(name: "minerDidTapBoost", parameters: nil)
+    }
+
+    public func trackMinerDidSelectShopTab(tab: String) {
+        AppMetrica.reportEvent(name: "minerDidSelectShopTab", parameters: ["tab": tab])
+    }
+
+    public func trackMinerDidTapShopItem(itemCode: String) {
+        AppMetrica.reportEvent(name: "minerDidTapShopItem", parameters: ["itemCode": itemCode])
+    }
+
+    public func trackMinerShopItemDidPresent(itemCode: String) {
+        AppMetrica.reportEvent(name: "minerShopItemDidPresent", parameters: ["itemCode": itemCode])
+    }
+
+    public func trackMinerShopItemDidDismiss(itemCode: String, timespent: Double) {
+        AppMetrica.reportEvent(name: "minerShopItemDidDismiss", parameters: ["itemCode": itemCode, "timespentSec": timespent])
+    }
+
+    public func trackMinerShopItemDidTapBuy(itemCode: String, price: Decimal) {
+        AppMetrica.reportEvent(name: "minerShopItemDidTapBuy", parameters: ["itemCode": itemCode, "price": price.double])
+    }
+
+    public func trackMinerShopItemDidPurchase(itemCode: String, price: Decimal, copies: Int) {
+        AppMetrica.reportEvent(name: "minerShopItemDidPurchase", parameters: ["itemCode": itemCode, "price": price.double, "copies": copies])
+    }
+
+    public func trackMinerOfflineIncomeDidPresent(amount: Decimal) {
+        AppMetrica.reportEvent(name: "minerOfflineIncomeDidPresent", parameters: ["amount": amount.double])
+    }
+
+    public func trackMinerOfflineIncomeDidDismiss(timespent: Double) {
+        AppMetrica.reportEvent(name: "minerOfflineIncomeDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackMinerOfflineIncomeDidTapMultiply(amount: Decimal) {
+        AppMetrica.reportEvent(name: "minerOfflineIncomeDidTapMultiply", parameters: ["amount": amount.double])
+    }
+
+    public func trackMinerOfflineIncomeDidTapClaim(amount: Decimal) {
+        AppMetrica.reportEvent(name: "minerOfflineIncomeDidTapClaim", parameters: ["amount": amount.double])
+    }
+
+    public func trackMinerTaskCompletedDidPresent(position: Int) {
+        AppMetrica.reportEvent(name: "minerTaskCompletedDidPresent", parameters: ["position": position])
+    }
+
+    public func trackMinerTaskCompletedDidDismiss(timespent: Double) {
+        AppMetrica.reportEvent(name: "minerTaskCompletedDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackMinerLevelUpDidPresent(level: Int) {
+        AppMetrica.reportEvent(name: "minerLevelUpDidPresent", parameters: ["level": level])
+    }
+
+    public func trackMinerLevelUpDidDismiss(timespent: Double) {
+        AppMetrica.reportEvent(name: "minerLevelUpDidDismiss", parameters: ["timespentSec": timespent])
+    }
+
+    public func trackMinerBoostStepDidIncrease(step: Decimal, timeToReach: Double) {
+        AppMetrica.reportEvent(name: "minerBoostStepDidIncrease", parameters: ["step": step.double, "timeToReachSec": timeToReach])
+    }
+
+    public func trackMinerBoostDidReset(step: Decimal, holdDuration: Double) {
+        AppMetrica.reportEvent(name: "minerBoostDidReset", parameters: ["step": step.double, "holdDurationSec": holdDuration])
+    }
+
+    public func trackMoneyOfferMinerDidTap() {
+        AppMetrica.reportEvent(name: "moneyOfferMinerDidTap", parameters: nil)
+    }
+
     // MARK: - Бизнес
 
     public func trackDashboardDidTapBusiness() {
